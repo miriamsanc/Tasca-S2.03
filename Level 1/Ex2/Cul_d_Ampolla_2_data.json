@@ -1,53 +1,5 @@
 {
   "collections": {
-    "Cul_d_Ampolla_2.Addresses": {
-      "ns": "Cul_d_Ampolla_2.Addresses",
-      "jsonSchema": {
-        "bsonType": "object",
-        "required": [
-          "_id",
-          "apt",
-          "city",
-          "country",
-          "floor",
-          "number",
-          "street",
-          "zip_code"
-        ],
-        "properties": {
-          "_id": {
-            "bsonType": "objectId"
-          },
-          "apt": {
-            "bsonType": [
-              "string",
-              "null"
-            ]
-          },
-          "city": {
-            "bsonType": "string"
-          },
-          "country": {
-            "bsonType": "string"
-          },
-          "floor": {
-            "bsonType": [
-              "string",
-              "null"
-            ]
-          },
-          "number": {
-            "bsonType": "string"
-          },
-          "street": {
-            "bsonType": "string"
-          },
-          "zip_code": {
-            "bsonType": "string"
-          }
-        }
-      }
-    },
     "Cul_d_Ampolla_2.Clients": {
       "ns": "Cul_d_Ampolla_2.Clients",
       "jsonSchema": {
@@ -114,7 +66,6 @@
         "required": [
           "_id",
           "brand",
-          "brand_id",
           "frame_color",
           "frame_type",
           "left_lens_color",
@@ -130,9 +81,6 @@
             "bsonType": "objectId"
           },
           "brand": {
-            "bsonType": "string"
-          },
-          "brand_id": {
             "bsonType": "string"
           },
           "frame_color": {
@@ -169,120 +117,20 @@
               "properties": {
                 "client": {
                   "bsonType": "object",
-                  "properties": {
-                    "_id": {
-                      "bsonType": "objectId"
-                    },
-                    "address": {
-                      "bsonType": "string"
-                    },
-                    "email": {
-                      "bsonType": "string"
-                    },
-                    "name": {
-                      "bsonType": "string"
-                    },
-                    "phone": {
-                      "bsonType": "string"
-                    },
-                    "referred_by": {
-                      "bsonType": [
-                        "string",
-                        "null"
-                      ]
-                    },
-                    "registration_date": {
-                      "bsonType": "date"
-                    }
-                  },
-                  "required": [
-                    "_id",
-                    "address",
-                    "email",
-                    "name",
-                    "phone",
-                    "referred_by",
-                    "registration_date"
-                  ]
-                },
-                "employee_id": {
-                  "bsonType": "string"
-                },
-                "sale_date": {
-                  "bsonType": "date"
+                  "properties": {},
+                  "required": []
                 }
               },
               "required": [
-                "client",
-                "employee_id",
-                "sale_date"
+                "client"
               ]
             }
           },
           "supplier": {
             "bsonType": "object",
-            "properties": {
-              "address": {
-                "bsonType": "object",
-                "properties": {
-                  "apt": {
-                    "bsonType": [
-                      "null",
-                      "string"
-                    ]
-                  },
-                  "city": {
-                    "bsonType": "string"
-                  },
-                  "country": {
-                    "bsonType": "string"
-                  },
-                  "floor": {
-                    "bsonType": [
-                      "null",
-                      "string"
-                    ]
-                  },
-                  "number": {
-                    "bsonType": "string"
-                  },
-                  "street": {
-                    "bsonType": "string"
-                  },
-                  "zip_code": {
-                    "bsonType": "string"
-                  }
-                },
-                "required": [
-                  "apt",
-                  "city",
-                  "country",
-                  "floor",
-                  "number",
-                  "street",
-                  "zip_code"
-                ]
-              },
-              "fax": {
-                "bsonType": "string"
-              },
-              "name": {
-                "bsonType": "string"
-              },
-              "NIF": {
-                "bsonType": "string"
-              },
-              "phone": {
-                "bsonType": "string"
-              }
-            },
-            "required": [
-              "address",
-              "fax",
-              "name",
-              "NIF",
-              "phone"
-            ]
+            "properties": {},
+            "required": [],
+            "expanded": true
           }
         }
       }
@@ -395,20 +243,18 @@
       "id": "33cbe34c-589b-41a1-b64e-c368bd0486fb",
       "relationship": [
         {
-          "ns": "Cul_d_Ampolla_2.Glasses",
+          "ns": "Cul_d_Ampolla_2.Sales",
+          "cardinality": null,
           "fields": [
-            "sales",
-            "client",
-            "_id"
-          ],
-          "cardinality": 1
+            "client_id"
+          ]
         },
         {
           "ns": "Cul_d_Ampolla_2.Clients",
+          "cardinality": 1,
           "fields": [
             "_id"
-          ],
-          "cardinality": 1
+          ]
         }
       ],
       "isInferred": true
@@ -444,31 +290,10 @@
           ]
         },
         {
-          "ns": "Cul_d_Ampolla_2.Glasses",
+          "ns": "Cul_d_Ampolla_2.Sales",
           "cardinality": 1,
           "fields": [
-            "sales",
             "employee_id"
-          ]
-        }
-      ],
-      "isInferred": false
-    },
-    {
-      "id": "709e65c4-b85b-4704-b4c9-32df7554866c",
-      "relationship": [
-        {
-          "ns": "Cul_d_Ampolla_2.Addresses",
-          "cardinality": null,
-          "fields": [
-            "_id"
-          ]
-        },
-        {
-          "ns": "Cul_d_Ampolla_2.Suppliers",
-          "cardinality": 1,
-          "fields": [
-            "address"
           ]
         }
       ],
@@ -489,6 +314,26 @@
           "cardinality": 1,
           "fields": [
             "supplier"
+          ]
+        }
+      ],
+      "isInferred": false
+    },
+    {
+      "id": "3fcdf34d-2805-4a33-84ae-524e99a344bc",
+      "relationship": [
+        {
+          "ns": "Cul_d_Ampolla_2.Clients",
+          "cardinality": 1,
+          "fields": [
+            "referred_by"
+          ]
+        },
+        {
+          "ns": "Cul_d_Ampolla_2.Clients",
+          "cardinality": 1,
+          "fields": [
+            "_id"
           ]
         }
       ],

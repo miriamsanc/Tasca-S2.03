@@ -1,7 +1,7 @@
 {
   "collections": {
-    "Cul_d_Ampolla_2.Clients": {
-      "ns": "Cul_d_Ampolla_2.Clients",
+    "Cul_d_Ampolla.Clients": {
+      "ns": "Cul_d_Ampolla.Clients",
       "jsonSchema": {
         "bsonType": "object",
         "required": [
@@ -11,7 +11,8 @@
           "name",
           "phone",
           "referred_by",
-          "registration_date"
+          "registration_date",
+          "sales"
         ],
         "properties": {
           "_id": {
@@ -37,12 +38,96 @@
           },
           "registration_date": {
             "bsonType": "date"
+          },
+          "sales": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "properties": {
+                "_id": {
+                  "bsonType": "string"
+                },
+                "employee": {
+                  "bsonType": "object",
+                  "properties": {
+                    "name": {
+                      "bsonType": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "employee_id": {
+                  "bsonType": "string"
+                },
+                "glasses": {
+                  "bsonType": "object",
+                  "properties": {
+                    "brand": {
+                      "bsonType": "string"
+                    },
+                    "frame_color": {
+                      "bsonType": "string"
+                    },
+                    "frame_type": {
+                      "bsonType": "string"
+                    },
+                    "left_lens_color": {
+                      "bsonType": "string"
+                    },
+                    "left_lens_prescription": {
+                      "bsonType": [
+                        "int",
+                        "double"
+                      ]
+                    },
+                    "price": {
+                      "bsonType": "int"
+                    },
+                    "right_lens_color": {
+                      "bsonType": "string"
+                    },
+                    "right_lens_prescription": {
+                      "bsonType": [
+                        "double",
+                        "int"
+                      ]
+                    },
+                    "supplier_id": {
+                      "bsonType": "string"
+                    },
+                    "_id": {
+                      "bsonType": "string"
+                    }
+                  },
+                  "required": [
+                    "brand",
+                    "frame_color",
+                    "frame_type",
+                    "left_lens_color",
+                    "left_lens_prescription",
+                    "price",
+                    "right_lens_color",
+                    "right_lens_prescription"
+                  ]
+                },
+                "sale_date": {
+                  "bsonType": "date"
+                }
+              },
+              "required": [
+                "_id",
+                "glasses",
+                "sale_date"
+              ]
+            }
           }
         }
       }
     },
-    "Cul_d_Ampolla_2.Employees": {
-      "ns": "Cul_d_Ampolla_2.Employees",
+    "Cul_d_Ampolla.Employees": {
+      "ns": "Cul_d_Ampolla.Employees",
       "jsonSchema": {
         "bsonType": "object",
         "required": [
@@ -59,93 +144,8 @@
         }
       }
     },
-    "Cul_d_Ampolla_2.Glasses": {
-      "ns": "Cul_d_Ampolla_2.Glasses",
-      "jsonSchema": {
-        "bsonType": "object",
-        "required": [
-          "_id",
-          "brand",
-          "frame_color",
-          "frame_type",
-          "left_lens_color",
-          "left_lens_prescription",
-          "price",
-          "right_lens_color",
-          "right_lens_prescription",
-          "sales",
-          "supplier_id"
-        ],
-        "properties": {
-          "_id": {
-            "bsonType": "objectId"
-          },
-          "brand": {
-            "bsonType": "string"
-          },
-          "frame_color": {
-            "bsonType": "string"
-          },
-          "frame_type": {
-            "bsonType": "string"
-          },
-          "left_lens_color": {
-            "bsonType": "string"
-          },
-          "left_lens_prescription": {
-            "bsonType": [
-              "double",
-              "int"
-            ]
-          },
-          "price": {
-            "bsonType": "int"
-          },
-          "right_lens_color": {
-            "bsonType": "string"
-          },
-          "right_lens_prescription": {
-            "bsonType": [
-              "int",
-              "double"
-            ]
-          },
-          "sales": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "object",
-              "properties": {
-                "client_id": {
-                  "bsonType": "object",
-                  "properties": {},
-                  "required": []
-                },
-                "employee_id": {
-                  "bsonType": "object",
-                  "properties": {},
-                  "required": []
-                },
-                "sale_date": {
-                  "bsonType": "date"
-                }
-              },
-              "required": [
-                "client_id",
-                "employee_id",
-                "sale_date"
-              ]
-            }
-          },
-          "supplier_id": {
-            "bsonType": "object",
-            "properties": {},
-            "required": []
-          }
-        }
-      }
-    },
-    "Cul_d_Ampolla_2.Suppliers": {
-      "ns": "Cul_d_Ampolla_2.Suppliers",
+    "Cul_d_Ampolla.Suppliers": {
+      "ns": "Cul_d_Ampolla.Suppliers",
       "jsonSchema": {
         "bsonType": "object",
         "required": [
@@ -165,8 +165,8 @@
             "properties": {
               "apt": {
                 "bsonType": [
-                  "string",
-                  "null"
+                  "null",
+                  "string"
                 ]
               },
               "city": {
@@ -177,8 +177,8 @@
               },
               "floor": {
                 "bsonType": [
-                  "string",
-                  "null"
+                  "null",
+                  "string"
                 ]
               },
               "number": {
@@ -219,17 +219,17 @@
   },
   "relationships": [
     {
-      "id": "9b89094f-f780-40a3-833f-1c7d732ed632",
+      "id": "ad6877c7-6831-458b-ad2a-4bbd325f0a86",
       "relationship": [
         {
-          "ns": "Cul_d_Ampolla_2.Clients",
+          "ns": "Cul_d_Ampolla.Clients",
           "cardinality": 1,
           "fields": [
             "referred_by"
           ]
         },
         {
-          "ns": "Cul_d_Ampolla_2.Clients",
+          "ns": "Cul_d_Ampolla.Clients",
           "cardinality": 1,
           "fields": [
             "_id"
@@ -239,60 +239,41 @@
       "isInferred": false
     },
     {
-      "id": "08fddc49-85e9-4d47-a0e9-ba6c97d69402",
+      "id": "e72e0b54-f2f6-4f82-9703-2af1ff877471",
       "relationship": [
         {
-          "ns": "Cul_d_Ampolla_2.Suppliers",
-          "cardinality": null,
+          "ns": "Cul_d_Ampolla.Employees",
+          "cardinality": 1,
           "fields": [
             "_id"
           ]
         },
         {
-          "ns": "Cul_d_Ampolla_2.Glasses",
-          "cardinality": 1,
-          "fields": [
-            "supplier_id"
-          ]
-        }
-      ],
-      "isInferred": false
-    },
-    {
-      "id": "bfe5455c-6d21-49a3-9164-267e1605b84a",
-      "relationship": [
-        {
-          "ns": "Cul_d_Ampolla_2.Glasses",
+          "ns": "Cul_d_Ampolla.Clients",
           "cardinality": null,
           "fields": [
             "sales",
             "employee_id"
           ]
-        },
-        {
-          "ns": "Cul_d_Ampolla_2.Employees",
-          "cardinality": 1,
-          "fields": [
-            "_id"
-          ]
         }
       ],
       "isInferred": false
     },
     {
-      "id": "b93f662f-82c5-4003-bccb-94ac8cbf1e8f",
+      "id": "5b19b53c-d5b1-49e8-9e0f-d67ba0f3bc86",
       "relationship": [
         {
-          "ns": "Cul_d_Ampolla_2.Glasses",
-          "cardinality": 1,
+          "ns": "Cul_d_Ampolla.Clients",
+          "cardinality": null,
           "fields": [
             "sales",
-            "client_id"
+            "glasses",
+            "supplier_id"
           ]
         },
         {
-          "ns": "Cul_d_Ampolla_2.Clients",
-          "cardinality": null,
+          "ns": "Cul_d_Ampolla.Suppliers",
+          "cardinality": 1,
           "fields": [
             "_id"
           ]
